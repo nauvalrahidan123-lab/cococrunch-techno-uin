@@ -1,33 +1,19 @@
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
-
-export default defineConfig(({ mode }) => {
-    // Memuat variabel lingkungan dari Vercel
-    const env = loadEnv(mode, '.', ''); 
-    
-    // Periksa apakah API Key ada, jika tidak, gunakan string kosong
-    const geminiApiKey = env.VITE_GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY || '';
-
-    return {
-        // [1] SOLUSI MASALAH JALUR CSS/JS 404
-        base: './', 
-        
-        server: {
-            port: 3000,
-            host: '0.0.0.0',
-        },
-        plugins: [],
-        define: {
-            // [2] GUNAKAN NAMA STANDAR VITE (VITE_ prefix)
-            //     DAN pastikan nilai yang di-define ada
-            'process.env.API_KEY': JSON.stringify(geminiApiKey),
-            'process.env.GEMINI_API_KEY': JSON.stringify(geminiApiKey)
-        },
-        resolve: {
-            alias: {
-                // Pastikan jalur alias di-resolve dengan benar
-                '@': path.resolve(__dirname, '.'),
-            }
-        }
-    };
-});
+{
+  "name": "website-manajemen-penjualan",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
